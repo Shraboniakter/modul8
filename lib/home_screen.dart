@@ -14,10 +14,6 @@ class _Homescreenstate extends State<HomeScreen>{
 
   double result=0;
 
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,18 +29,12 @@ class _Homescreenstate extends State<HomeScreen>{
              TextFormField(
                controller: _fieldoneTEController,
               keyboardType: TextInputType.number,
-              textInputAction: TextInputAction.next,
-              decoration: const InputDecoration(
-                hintText: 'Field 1'
-              ),
-               validator: (String? value){
-                 if(value?.isEmpty ?? true) {
-                   return 'Enter vaild value';
-                 }
-                 return null;
-               }
+               textInputAction: TextInputAction.next,
+               decoration: InputDecoration(
+                 hintText: 'Field 1'
+               ),
             ),
-             TextFormField(
+            TextFormField(
                controller: _fieldtwoTEController,
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
@@ -89,6 +79,20 @@ class _Homescreenstate extends State<HomeScreen>{
                   icon:const Icon(Icons.remove) ,
                   label: const Text('Minu'),),
 
+
+                ElevatedButton.icon(onPressed: (){
+                  if(_formKey.currentState!.validate()){
+                    double firstNumber=double.parse(_fieldoneTEController.text.trim());
+                    double secondNumber=double.parse(_fieldtwoTEController.text.trim());
+                    print(firstNumber);
+                    print(secondNumber);
+                    result=firstNumber*secondNumber;
+                    setState(() {
+                    });
+                  }
+                },
+                  icon:const Icon(Icons.multiple_stop) ,
+                  label: const Text('multiple'),),
               ],
             ),
             Text('result is $result',style: const TextStyle(fontSize: 18),),
